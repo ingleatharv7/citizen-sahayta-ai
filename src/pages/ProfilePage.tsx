@@ -1,8 +1,17 @@
-import { useLanguage } from '@/contexts/LanguageContext';
-import { Globe, History, Bookmark, User } from 'lucide-react';
+import { useLanguage, type Language } from '@/contexts/LanguageContext';
+import { useTheme } from '@/contexts/ThemeContext';
+import { Globe, History, Bookmark, User, Moon } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
+
+const langOptions: { value: Language; label: string }[] = [
+  { value: 'en', label: 'English' },
+  { value: 'hi', label: 'हिंदी' },
+  { value: 'mr', label: 'मराठी' },
+];
 
 export function ProfilePage() {
-  const { t, lang, toggleLang } = useLanguage();
+  const { t, lang, setLang } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="px-4 pb-6 space-y-4">
@@ -14,25 +23,40 @@ export function ProfilePage() {
           <User size={28} className="text-primary-foreground" />
         </div>
         <div>
-          <p className="text-sm font-semibold text-foreground">
-            {lang === 'hi' ? 'अतिथि उपयोगकर्ता' : 'Guest User'}
-          </p>
-          <p className="text-xs text-muted-foreground">
-            {lang === 'hi' ? 'लॉगिन आवश्यक नहीं' : 'No login required'}
-          </p>
+          <p className="text-sm font-semibold text-foreground">{t('guest')}</p>
+          <p className="text-xs text-muted-foreground">{t('noLogin')}</p>
+        </div>
+      </div>
+
+      {/* Dark Mode */}
+      <div className="card-civic p-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Moon size={18} className="text-primary" />
+            <span className="text-sm font-medium text-foreground">{t('profile.theme')}</span>
+          </div>
+          <Switch checked={theme === 'dark'} onCheckedChange={toggleTheme} />
         </div>
       </div>
 
       {/* Language */}
       <div className="card-civic p-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Globe size={18} className="text-primary" />
-            <span className="text-sm font-medium text-foreground">{t('profile.language')}</span>
-          </div>
-          <button onClick={toggleLang} className="btn-civic-outline !px-3 !py-1.5 !text-xs">
-            {lang === 'en' ? 'हिंदी' : 'English'}
-          </button>
+        <div className="flex items-center gap-2 mb-3">
+          <Globe size={18} className="text-primary" />
+          <span className="text-sm font-medium text-foreground">{t('profile.language')}</span>
+        </div>
+        <div className="flex gap-2">
+          {langOptions.map(opt => (
+            <button
+              key={opt.value}
+              onClick={() => setLang(opt.value)}
+              className={`px-3 py-1.5 rounded-sm text-xs font-medium transition-colors ${
+                lang === opt.value ? 'bg-primary text-primary-foreground' : 'bg-secondary text-foreground'
+              }`}
+            >
+              {opt.label}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -42,9 +66,7 @@ export function ProfilePage() {
           <History size={18} className="text-primary" />
           <span className="text-sm font-medium text-foreground">{t('profile.recentSearches')}</span>
         </div>
-        <p className="text-xs text-muted-foreground">
-          {lang === 'hi' ? 'कोई हाल की खोज नहीं' : 'No recent searches'}
-        </p>
+        <p className="text-xs text-muted-foreground">{t('noSearches')}</p>
       </div>
 
       {/* Saved Schemes */}
@@ -53,9 +75,7 @@ export function ProfilePage() {
           <Bookmark size={18} className="text-primary" />
           <span className="text-sm font-medium text-foreground">{t('profile.savedSchemes')}</span>
         </div>
-        <p className="text-xs text-muted-foreground">
-          {lang === 'hi' ? 'कोई सहेजी गई योजना नहीं' : 'No saved schemes'}
-        </p>
+        <p className="text-xs text-muted-foreground">{t('noSaved')}</p>
       </div>
     </div>
   );
