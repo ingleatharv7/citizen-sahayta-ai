@@ -37,7 +37,7 @@ export function SchemesPage({ onSelectScheme }: SchemesPageProps) {
             !activeCategory ? 'bg-primary text-primary-foreground' : 'bg-secondary text-foreground'
           }`}
         >
-          All
+          {t('all')}
         </button>
         {categories.map(cat => {
           const Icon = categoryIcons[cat.id];
