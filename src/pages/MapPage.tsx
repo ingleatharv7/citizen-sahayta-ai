@@ -12,7 +12,6 @@ export function MapPage() {
   const [mapLoaded, setMapLoaded] = useState(false);
   const [activeService, setActiveService] = useState<ServiceType>('government+offices');
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
-  const mapInstanceRef = useRef<google.maps.Map | null>(null);
 
   const serviceTypes = [
     { key: 'map.govOffices', icon: Building2, query: 'government+offices' as ServiceType },
@@ -20,9 +19,8 @@ export function MapPage() {
     { key: 'map.cyberCafe', icon: Monitor, query: 'cyber+cafe' as ServiceType },
   ];
 
-  // Load Google Maps script
   useEffect(() => {
-    if (window.google?.maps) {
+    if ((window as any).google?.maps) {
       setMapLoaded(true);
       return;
     }
@@ -34,37 +32,53 @@ export function MapPage() {
     document.head.appendChild(script);
   }, []);
 
-  // Get user location
   useEffect(() => {
     navigator.geolocation?.getCurrentPosition(
       (pos) => setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
-      () => setUserLocation({ lat: 28.6139, lng: 77.2090 }) // Default: Delhi
+      () => setUserLocation({ lat: 28.6139, lng: 77.2090 })
     );
   }, []);
 
-  // Init map and search
   useEffect(() => {
     if (!mapLoaded || !userLocation || !mapRef.current) return;
+    const g = (window as any).google;
+    if (!g?.maps) return;
 
-    const map = new google.maps.Map(mapRef.current, {
+    const map = new g.maps.Map(mapRef.current, {
       center: userLocation,
       zoom: 14,
-      styles: [{ featureType: 'poi', stylers: [{ visibility: 'simplified' }] }],
     });
-    mapInstanceRef.current = map;
 
-    new google.maps.Marker({ position: userLocation, map, title: 'You', icon: { path: google.maps.SymbolPath.CIRCLE, scale: 8, fillColor: '#2563EB', fillOpacity: 1, strokeColor: '#fff', strokeWeight: 2 } });
+    new g.maps.Marker({
+      position: userLocation,
+      map,
+      title: 'You',
+      icon: {
+        path: g.maps.SymbolPath.CIRCLE,
+        scale: 8,
+        fillColor: '#2563EB',
+        fillOpacity: 1,
+        strokeColor: '#fff',
+        strokeWeight: 2,
+      },
+    });
 
-    const service = new google.maps.places.PlacesService(map);
+    const service = new g.maps.places.PlacesService(map);
     const searchQuery = activeService.replace(/\+/g, ' ');
     service.nearbySearch(
       { location: userLocation, radius: 5000, keyword: searchQuery },
-      (results, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-          results.forEach((place) => {
+      (results: any[], status: string) => {
+        if (status === g.maps.places.PlacesServiceStatus.OK && results) {
+          results.forEach((place: any) => {
             if (place.geometry?.location) {
-              const marker = new google.maps.Marker({ position: place.geometry.location, map, title: place.name });
-              const info = new google.maps.InfoWindow({ content: `<div style="color:#111827;font-size:13px"><strong>${place.name}</strong><br/>${place.vicinity || ''}</div>` });
+              const marker = new g.maps.Marker({
+                position: place.geometry.location,
+                map,
+                title: place.name,
+              });
+              const info = new g.maps.InfoWindow({
+                content: `<div style="color:#111827;font-size:13px"><strong>${place.name}</strong><br/>${place.vicinity || ''}</div>`,
+              });
               marker.addListener('click', () => info.open(map, marker));
             }
           });
