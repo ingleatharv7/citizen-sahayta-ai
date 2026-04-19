@@ -60,7 +60,7 @@ export function TopBar() {
               <ChevronDown size={12} />
             </button>
             {showLangMenu && (
-              <div className="absolute right-0 top-full mt-1 bg-card border border-border rounded-sm shadow-lg z-50 min-w-[120px]">
+              <div className="absolute right-0 top-full mt-1 bg-card border border-border rounded-sm shadow-lg z-50 min-w-[140px] max-h-72 overflow-y-auto">
                 {languageOptions.map(opt => (
                   <button
                     key={opt.value}
