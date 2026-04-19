@@ -1,4 +1,4 @@
-import type { Language, LocalizedText } from '@/contexts/LanguageContext';
+import type { LocalizedText } from '@/contexts/LanguageContext';
 
 export interface Scheme {
   id: string;
