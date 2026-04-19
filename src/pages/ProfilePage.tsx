@@ -7,6 +7,10 @@ const langOptions: { value: Language; label: string }[] = [
   { value: 'en', label: 'English' },
   { value: 'hi', label: 'हिंदी' },
   { value: 'mr', label: 'मराठी' },
+  { value: 'gu', label: 'ગુજરાતી' },
+  { value: 'pa', label: 'ਪੰਜਾਬੀ' },
+  { value: 'te', label: 'తెలుగు' },
+  { value: 'ta', label: 'தமிழ்' },
 ];
 
 export function ProfilePage() {
