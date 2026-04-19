@@ -1,14 +1,14 @@
-import type { Language } from '@/contexts/LanguageContext';
+import type { LocalizedText } from '@/contexts/LanguageContext';
 
 export interface Scheme {
   id: string;
-  name: Record<Language, string>;
+  name: LocalizedText<string>;
   category: string;
-  description: Record<Language, string>;
-  benefits: Record<Language, string[]>;
-  eligibility: Record<Language, string[]>;
-  documents: Record<Language, string[]>;
-  process: Record<Language, string[]>;
+  description: LocalizedText<string>;
+  benefits: LocalizedText<string[]>;
+  eligibility: LocalizedText<string[]>;
+  documents: LocalizedText<string[]>;
+  process: LocalizedText<string[]>;
   criteria: {
     minAge?: number;
     maxAge?: number;
@@ -223,12 +223,12 @@ export function checkEligibility(userProfile: {
   gender: string;
   category: string;
   occupation: string;
-}): { eligible: Scheme[]; notEligible: { scheme: Scheme; reasons: Record<Language, string>[] }[] } {
+}): { eligible: Scheme[]; notEligible: { scheme: Scheme; reasons: LocalizedText<string>[] }[] } {
   const eligible: Scheme[] = [];
-  const notEligible: { scheme: Scheme; reasons: Record<Language, string>[] }[] = [];
+  const notEligible: { scheme: Scheme; reasons: LocalizedText<string>[] }[] = [];
 
   for (const scheme of schemes) {
-    const reasons: Record<Language, string>[] = [];
+    const reasons: LocalizedText<string>[] = [];
     const c = scheme.criteria;
 
     if (c.minAge && userProfile.age < c.minAge) {

@@ -1,6 +1,12 @@
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import React, { createContext, useContext, useState, useCallback } from 'react';
 
-export type Language = 'en' | 'hi' | 'mr';
+export type Language = 'en' | 'hi' | 'mr' | 'gu' | 'pa' | 'te' | 'ta';
+
+export type LocalizedText<T = string> = Partial<Record<Language, T>> & { en: T };
+
+export function localize<T>(record: LocalizedText<T>, lang: Language): T {
+  return (record[lang] ?? record.en) as T;
+}
 
 interface LanguageContextType {
   lang: Language;
@@ -8,30 +14,30 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-const translations: Record<string, Record<Language, string>> = {
-  'app.title': { en: 'CivicAI Assistant', hi: 'सिविकAI सहायक', mr: 'सिविकAI सहाय्यक' },
-  'app.tagline': { en: 'Your Government Schemes Assistant', hi: 'आपका सरकारी योजना सहायक', mr: 'तुमचा सरकारी योजना सहाय्यक' },
-  'nav.home': { en: 'Home', hi: 'होम', mr: 'मुख्यपृष्ठ' },
-  'nav.schemes': { en: 'Schemes', hi: 'योजनाएं', mr: 'योजना' },
-  'nav.chat': { en: 'Chat', hi: 'चैट', mr: 'चॅट' },
-  'nav.map': { en: 'Map', hi: 'नक्शा', mr: 'नकाशा' },
-  'nav.profile': { en: 'Profile', hi: 'प्रोफ़ाइल', mr: 'प्रोफाइल' },
-  'home.search': { en: 'Ask about any government scheme...', hi: 'किसी भी सरकारी योजना के बारे में पूछें...', mr: 'कोणत्याही सरकारी योजनेबद्दल विचारा...' },
-  'home.eligibility': { en: 'Check Eligibility', hi: 'पात्रता जांचें', mr: 'पात्रता तपासा' },
-  'home.findSchemes': { en: 'Find Schemes', hi: 'योजनाएं खोजें', mr: 'योजना शोधा' },
-  'home.nearbyServices': { en: 'Nearby Services', hi: 'नज़दीकी सेवाएं', mr: 'जवळच्या सेवा' },
-  'home.documents': { en: 'Document Guide', hi: 'दस्तावेज़ गाइड', mr: 'कागदपत्र मार्गदर्शक' },
-  'home.popular': { en: 'Popular Schemes', hi: 'लोकप्रिय योजनाएं', mr: 'लोकप्रिय योजना' },
-  'home.categories': { en: 'Categories', hi: 'श्रेणियां', mr: 'श्रेणी' },
-  'cat.education': { en: 'Education', hi: 'शिक्षा', mr: 'शिक्षण' },
-  'cat.agriculture': { en: 'Agriculture', hi: 'कृषि', mr: 'शेती' },
-  'cat.employment': { en: 'Employment', hi: 'रोज़गार', mr: 'रोजगार' },
-  'cat.women': { en: 'Women & Child', hi: 'महिला एवं बाल', mr: 'महिला व बाल' },
-  'cat.housing': { en: 'Housing', hi: 'आवास', mr: 'गृहनिर्माण' },
-  'cat.health': { en: 'Health', hi: 'स्वास्थ्य', mr: 'आरोग्य' },
-  'chat.placeholder': { en: 'Ask me about any government scheme...', hi: 'मुझसे किसी भी सरकारी योजना के बारे में पूछें...', mr: 'मला कोणत्याही सरकारी योजनेबद्दल विचारा...' },
-  'chat.title': { en: 'CivicAI Assistant', hi: 'सिविकAI सहायक', mr: 'सिविकAI सहाय्यक' },
-  'chat.welcome': { en: 'Hello! I can help you find government schemes, check eligibility, and guide you through documents. Ask me anything!', hi: 'नमस्ते! मैं आपको सरकारी योजनाएं खोजने, पात्रता जांचने और दस्तावेज़ों में मदद कर सकता हूं। कुछ भी पूछें!', mr: 'नमस्कार! मी तुम्हाला सरकारी योजना शोधण्यात, पात्रता तपासण्यात आणि कागदपत्रांबद्दल मार्गदर्शन करू शकतो. काहीही विचारा!' },
+const translations: Record<string, LocalizedText<string>> = {
+  'app.title': { en: 'CivicAI Assistant', hi: 'सिविकAI सहायक', mr: 'सिविकAI सहाय्यक', gu: 'સિવિકAI સહાયક', pa: 'ਸਿਵਿਕAI ਸਹਾਇਕ', te: 'సివిక్AI సహాయకుడు', ta: 'சிவிக்AI உதவியாளர்' },
+  'app.tagline': { en: 'Your Government Schemes Assistant', hi: 'आपका सरकारी योजना सहायक', mr: 'तुमचा सरकारी योजना सहाय्यक', gu: 'તમારો સરકારી યોજના સહાયક', pa: 'ਤੁਹਾਡਾ ਸਰਕਾਰੀ ਯੋਜਨਾ ਸਹਾਇਕ', te: 'మీ ప్రభుత్వ పథకాల సహాయకుడు', ta: 'உங்கள் அரசு திட்டங்கள் உதவியாளர்' },
+  'nav.home': { en: 'Home', hi: 'होम', mr: 'मुख्यपृष्ठ', gu: 'હોમ', pa: 'ਹੋਮ', te: 'హోమ్', ta: 'முகப்பு' },
+  'nav.schemes': { en: 'Schemes', hi: 'योजनाएं', mr: 'योजना', gu: 'યોજનાઓ', pa: 'ਯੋਜਨਾਵਾਂ', te: 'పథకాలు', ta: 'திட்டங்கள்' },
+  'nav.chat': { en: 'Chat', hi: 'चैट', mr: 'चॅट', gu: 'ચેટ', pa: 'ਚੈਟ', te: 'చాట్', ta: 'அரட்டை' },
+  'nav.map': { en: 'Map', hi: 'नक्शा', mr: 'नकाशा', gu: 'નકશો', pa: 'ਨਕਸ਼ਾ', te: 'మ్యాప్', ta: 'வரைபடம்' },
+  'nav.profile': { en: 'Profile', hi: 'प्रोफ़ाइल', mr: 'प्रोफाइल', gu: 'પ્રોફાઇલ', pa: 'ਪ੍ਰੋਫਾਈਲ', te: 'ప్రొఫైల్', ta: 'சுயவிவரம்' },
+  'home.search': { en: 'Ask about any government scheme...', hi: 'किसी भी सरकारी योजना के बारे में पूछें...', mr: 'कोणत्याही सरकारी योजनेबद्दल विचारा...', gu: 'કોઈપણ સરકારી યોજના વિશે પૂછો...', pa: 'ਕਿਸੇ ਵੀ ਸਰਕਾਰੀ ਯੋਜਨਾ ਬਾਰੇ ਪੁੱਛੋ...', te: 'ఏదైనా ప్రభుత్వ పథకం గురించి అడగండి...', ta: 'எந்த அரசு திட்டத்தைப் பற்றியும் கேளுங்கள்...' },
+  'home.eligibility': { en: 'Check Eligibility', hi: 'पात्रता जांचें', mr: 'पात्रता तपासा', gu: 'પાત્રતા તપાસો', pa: 'ਯੋਗਤਾ ਜਾਂਚੋ', te: 'అర్హత తనిఖీ', ta: 'தகுதியைச் சரிபார்' },
+  'home.findSchemes': { en: 'Find Schemes', hi: 'योजनाएं खोजें', mr: 'योजना शोधा', gu: 'યોજનાઓ શોધો', pa: 'ਯੋਜਨਾਵਾਂ ਲੱਭੋ', te: 'పథకాలు కనుగొనండి', ta: 'திட்டங்களைக் கண்டறி' },
+  'home.nearbyServices': { en: 'Nearby Services', hi: 'नज़दीकी सेवाएं', mr: 'जवळच्या सेवा', gu: 'નજીકની સેવાઓ', pa: 'ਨੇੜਲੀਆਂ ਸੇਵਾਵਾਂ', te: 'సమీప సేవలు', ta: 'அருகிலுள்ள சேவைகள்' },
+  'home.documents': { en: 'Document Guide', hi: 'दस्तावेज़ गाइड', mr: 'कागदपत्र मार्गदर्शक', gu: 'દસ્તાવેજ માર્ગદર્શિકા', pa: 'ਦਸਤਾਵੇਜ਼ ਗਾਈਡ', te: 'డాక్యుమెంట్ గైడ్', ta: 'ஆவண வழிகாட்டி' },
+  'home.popular': { en: 'Popular Schemes', hi: 'लोकप्रिय योजनाएं', mr: 'लोकप्रिय योजना', gu: 'લોકપ્રિય યોજનાઓ', pa: 'ਪ੍ਰਸਿੱਧ ਯੋਜਨਾਵਾਂ', te: 'జనాదరణ పథకాలు', ta: 'பிரபலமான திட்டங்கள்' },
+  'home.categories': { en: 'Categories', hi: 'श्रेणियां', mr: 'श्रेणी', gu: 'શ્રેણીઓ', pa: 'ਸ਼੍ਰੇਣੀਆਂ', te: 'వర్గాలు', ta: 'வகைகள்' },
+  'cat.education': { en: 'Education', hi: 'शिक्षा', mr: 'शिक्षण', gu: 'શિક્ષણ', pa: 'ਸਿੱਖਿਆ', te: 'విద్య', ta: 'கல்வி' },
+  'cat.agriculture': { en: 'Agriculture', hi: 'कृषि', mr: 'शेती', gu: 'કૃષિ', pa: 'ਖੇਤੀ', te: 'వ్యవసాయం', ta: 'விவசாயம்' },
+  'cat.employment': { en: 'Employment', hi: 'रोज़गार', mr: 'रोजगार', gu: 'રોજગાર', pa: 'ਰੁਜ਼ਗਾਰ', te: 'ఉద్యోగం', ta: 'வேலைவாய்ப்பு' },
+  'cat.women': { en: 'Women & Child', hi: 'महिला एवं बाल', mr: 'महिला व बाल', gu: 'મહિલા અને બાળ', pa: 'ਔਰਤ ਅਤੇ ਬੱਚਾ', te: 'మహిళలు & పిల్లలు', ta: 'பெண்கள் & குழந்தைகள்' },
+  'cat.housing': { en: 'Housing', hi: 'आवास', mr: 'गृहनिर्माण', gu: 'આવાસ', pa: 'ਰਿਹਾਇਸ਼', te: 'గృహ', ta: 'வீடு' },
+  'cat.health': { en: 'Health', hi: 'स्वास्थ्य', mr: 'आरोग्य', gu: 'આરોગ્ય', pa: 'ਸਿਹਤ', te: 'ఆరోగ్యం', ta: 'சுகாதாரம்' },
+  'chat.placeholder': { en: 'Ask me about any government scheme...', hi: 'मुझसे किसी भी सरकारी योजना के बारे में पूछें...', mr: 'मला कोणत्याही सरकारी योजनेबद्दल विचारा...', gu: 'મને કોઈપણ સરકારી યોજના વિશે પૂછો...', pa: 'ਮੈਨੂੰ ਕਿਸੇ ਵੀ ਸਰਕਾਰੀ ਯੋਜਨਾ ਬਾਰੇ ਪੁੱਛੋ...', te: 'నన్ను ఏదైనా ప్రభుత్వ పథకం గురించి అడగండి...', ta: 'எந்த அரசு திட்டத்தைப் பற்றியும் என்னிடம் கேளுங்கள்...' },
+  'chat.title': { en: 'CivicAI Assistant', hi: 'सिविकAI सहायक', mr: 'सिविकAI सहाय्यक', gu: 'સિવિકAI સહાયક', pa: 'ਸਿਵਿਕAI ਸਹਾਇਕ', te: 'సివిక్AI సహాయకుడు', ta: 'சிவிக்AI உதவியாளர்' },
+  'chat.welcome': { en: 'Hello! I can help you find government schemes, check eligibility, and guide you through documents. Ask me anything!', hi: 'नमस्ते! मैं आपको सरकारी योजनाएं खोजने, पात्रता जांचने और दस्तावेज़ों में मदद कर सकता हूं। कुछ भी पूछें!', mr: 'नमस्कार! मी तुम्हाला सरकारी योजना शोधण्यात, पात्रता तपासण्यात आणि कागदपत्रांबद्दल मार्गदर्शन करू शकतो. काहीही विचारा!', gu: 'નમસ્તે! હું તમને સરકારી યોજનાઓ શોધવામાં, પાત્રતા તપાસવામાં અને દસ્તાવેજો માટે માર્ગદર્શન આપી શકું છું. કંઈપણ પૂછો!', pa: 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ਮੈਂ ਤੁਹਾਨੂੰ ਸਰਕਾਰੀ ਯੋਜਨਾਵਾਂ ਲੱਭਣ, ਯੋਗਤਾ ਜਾਂਚਣ ਅਤੇ ਦਸਤਾਵੇਜ਼ਾਂ ਬਾਰੇ ਮਾਰਗਦਰਸ਼ਨ ਕਰ ਸਕਦਾ ਹਾਂ। ਕੁਝ ਵੀ ਪੁੱਛੋ!', te: 'నమస్కారం! నేను మీకు ప్రభుత్వ పథకాలను కనుగొనడంలో, అర్హతను తనిఖీ చేయడంలో మరియు డాక్యుమెంట్ల ద్వారా మార్గనిర్దేశం చేయగలను. ఏదైనా అడగండి!', ta: 'வணக்கம்! அரசு திட்டங்களைக் கண்டறியவும், தகுதியை சரிபார்க்கவும், ஆவணங்கள் வழியாக உங்களை வழிநடத்தவும் உதவ முடியும். எதையும் கேளுங்கள்!' },
   'eligibility.title': { en: 'Check Your Eligibility', hi: 'अपनी पात्रता जांचें', mr: 'तुमची पात्रता तपासा' },
   'eligibility.age': { en: 'Age', hi: 'उम्र', mr: 'वय' },
   'eligibility.income': { en: 'Annual Income (₹)', hi: 'वार्षिक आय (₹)', mr: 'वार्षिक उत्पन्न (₹)' },
@@ -73,14 +79,19 @@ const translations: Record<string, Record<Language, string>> = {
   'noSearches': { en: 'No recent searches', hi: 'कोई हाल की खोज नहीं', mr: 'अलीकडील शोध नाहीत' },
   'noSaved': { en: 'No saved schemes', hi: 'कोई सहेजी गई योजना नहीं', mr: 'जतन केलेल्या योजना नाहीत' },
   'all': { en: 'All', hi: 'सभी', mr: 'सर्व' },
+  'voice.listen': { en: 'Speak', hi: 'बोलें', mr: 'बोला', gu: 'બોલો', pa: 'ਬੋਲੋ', te: 'మాట్లాడండి', ta: 'பேசு' },
+  'voice.stop': { en: 'Stop', hi: 'रोकें', mr: 'थांबवा', gu: 'રોકો', pa: 'ਰੋਕੋ', te: 'ఆపు', ta: 'நிறுத்து' },
+  'voice.play': { en: 'Play', hi: 'चलाएं', mr: 'प्ले करा', gu: 'ચલાવો', pa: 'ਚਲਾਓ', te: 'ప్లే', ta: 'இயக்கு' },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+const VALID_LANGS: Language[] = ['en', 'hi', 'mr', 'gu', 'pa', 'te', 'ta'];
+
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [lang, setLangState] = useState<Language>(() => {
-    const saved = localStorage.getItem('civicai-lang');
-    return (saved === 'hi' || saved === 'mr' ? saved : 'en') as Language;
+    const saved = localStorage.getItem('civicai-lang') as Language | null;
+    return saved && VALID_LANGS.includes(saved) ? saved : 'en';
   });
 
   const setLang = useCallback((l: Language) => {
@@ -89,7 +100,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, []);
 
   const t = useCallback((key: string) => {
-    return translations[key]?.[lang] ?? key;
+    const entry = translations[key];
+    if (!entry) return key;
+    return entry[lang] ?? entry.en;
   }, [lang]);
 
   return (
