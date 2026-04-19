@@ -7,6 +7,7 @@ import { ChatPage } from '@/pages/ChatPage';
 import { MapPage } from '@/pages/MapPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { EligibilityPage } from '@/pages/EligibilityPage';
+import { AuthPage } from '@/pages/AuthPage';
 import { SchemeDetail } from '@/components/SchemeDetail';
 import type { Scheme } from '@/data/schemes';
 
@@ -35,6 +36,9 @@ const Index = () => {
     if (activeTab === 'eligibility') {
       return <EligibilityPage onSelectScheme={handleSelectScheme} onBack={() => handleNavigate('home')} />;
     }
+    if (activeTab === 'auth') {
+      return <AuthPage onBack={() => handleNavigate('profile')} onSuccess={() => handleNavigate('profile')} />;
+    }
 
     switch (activeTab) {
       case 'home':
@@ -46,14 +50,14 @@ const Index = () => {
       case 'map':
         return <MapPage />;
       case 'profile':
-        return <ProfilePage />;
+        return <ProfilePage onNavigate={handleNavigate} onSelectScheme={handleSelectScheme} />;
       default:
         return <HomePage onNavigate={handleNavigate} onSelectScheme={handleSelectScheme} onSearch={handleSearch} />;
     }
   };
 
-  const navTab = ['schemeDetail', 'eligibility'].includes(activeTab)
-    ? activeTab === 'eligibility' ? 'home' : 'schemes'
+  const navTab = ['schemeDetail', 'eligibility', 'auth'].includes(activeTab)
+    ? activeTab === 'eligibility' ? 'home' : activeTab === 'auth' ? 'profile' : 'schemes'
     : activeTab;
 
   return (
