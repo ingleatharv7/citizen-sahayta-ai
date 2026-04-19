@@ -206,6 +206,316 @@ export const schemes: Scheme[] = [
     },
     criteria: { maxIncome: 250000 }
   },
+  {
+    id: 'ujjwala',
+    name: { en: 'PM Ujjwala Yojana', hi: 'पीएम उज्ज्वला योजना', mr: 'पीएम उज्ज्वला योजना' },
+    category: 'women',
+    description: {
+      en: 'Free LPG gas connection for women from BPL families to replace harmful wood/coal cooking.',
+      hi: 'BPL परिवारों की महिलाओं के लिए मुफ्त एलपीजी गैस कनेक्शन ताकि लकड़ी/कोयले से होने वाले धुएं से छुटकारा मिले।',
+      mr: 'BPL कुटुंबातील महिलांना मोफत एलपीजी गॅस कनेक्शन, लाकूड/कोळसा वापर बंद करण्यासाठी.'
+    },
+    benefits: {
+      en: ['Free LPG gas connection', 'Free first refill and stove', 'Subsidy on refills', 'Cleaner & safer cooking'],
+      hi: ['मुफ्त एलपीजी कनेक्शन', 'पहली रिफिल और चूल्हा मुफ्त', 'रिफिल पर सब्सिडी', 'स्वच्छ और सुरक्षित खाना पकाना'],
+      mr: ['मोफत एलपीजी कनेक्शन', 'पहिली रिफिल आणि शेगडी मोफत', 'रिफिलवर अनुदान', 'स्वच्छ व सुरक्षित स्वयंपाक']
+    },
+    eligibility: {
+      en: ['Adult woman from BPL household', 'No existing LPG connection in household', 'Indian citizen'],
+      hi: ['BPL परिवार की वयस्क महिला', 'घर में पहले से एलपीजी कनेक्शन न हो', 'भारतीय नागरिक'],
+      mr: ['BPL कुटुंबातील प्रौढ महिला', 'घरात आधीच एलपीजी कनेक्शन नसावे', 'भारतीय नागरिक']
+    },
+    documents: {
+      en: ['Aadhaar Card', 'BPL ration card', 'Bank account details', 'Passport size photo', 'Address proof'],
+      hi: ['आधार कार्ड', 'BPL राशन कार्ड', 'बैंक खाता विवरण', 'पासपोर्ट साइज फोटो', 'पता प्रमाण'],
+      mr: ['आधार कार्ड', 'BPL रेशन कार्ड', 'बँक खाते तपशील', 'पासपोर्ट आकाराचा फोटो', 'पत्ता पुरावा']
+    },
+    process: {
+      en: ['Visit nearest LPG distributor or pmuy.gov.in', 'Fill KYC form with Aadhaar', 'Submit BPL proof', 'Receive connection within few days'],
+      hi: ['नज़दीकी एलपीजी वितरक या pmuy.gov.in पर जाएं', 'आधार के साथ KYC फॉर्म भरें', 'BPL प्रमाण जमा करें', 'कुछ दिनों में कनेक्शन प्राप्त करें'],
+      mr: ['जवळच्या एलपीजी वितरकाकडे किंवा pmuy.gov.in वर जा', 'आधारसह KYC फॉर्म भरा', 'BPL पुरावा द्या', 'काही दिवसांत कनेक्शन मिळेल']
+    },
+    criteria: { gender: ['female'], minAge: 18, maxIncome: 100000 }
+  },
+  {
+    id: 'atal-pension',
+    name: { en: 'Atal Pension Yojana', hi: 'अटल पेंशन योजना', mr: 'अटल पेंशन योजना' },
+    category: 'employment',
+    description: {
+      en: 'Guaranteed monthly pension of ₹1,000 to ₹5,000 after age 60 for workers in unorganised sector.',
+      hi: '60 वर्ष की आयु के बाद असंगठित क्षेत्र के श्रमिकों को ₹1,000 से ₹5,000 तक की मासिक पेंशन की गारंटी।',
+      mr: '60 वर्षांनंतर असंघटित क्षेत्रातील कामगारांना ₹1,000 ते ₹5,000 मासिक पेन्शनची हमी.'
+    },
+    benefits: {
+      en: ['Guaranteed pension ₹1,000–₹5,000/month after 60', 'Government co-contribution for eligible subscribers', 'Pension to spouse after death', 'Lump sum to nominee'],
+      hi: ['60 के बाद ₹1,000–₹5,000 प्रति माह गारंटीड पेंशन', 'पात्र ग्राहकों के लिए सरकारी सह-योगदान', 'मृत्यु के बाद जीवनसाथी को पेंशन', 'नामिती को एकमुश्त राशि'],
+      mr: ['60 नंतर ₹1,000–₹5,000 दरमहा हमी पेन्शन', 'पात्र ग्राहकांसाठी सरकारी सह-योगदान', 'मृत्यूनंतर जोडीदाराला पेन्शन', 'नामिनीला एकरकमी रक्कम']
+    },
+    eligibility: {
+      en: ['Indian citizen aged 18–40', 'Must have a savings bank account', 'Should not be income tax payer (for govt co-contribution)'],
+      hi: ['18–40 वर्ष का भारतीय नागरिक', 'बचत बैंक खाता होना चाहिए', 'आयकर दाता न हो (सरकारी सह-योगदान के लिए)'],
+      mr: ['18–40 वयाचा भारतीय नागरिक', 'बचत बँक खाते आवश्यक', 'आयकर भरणारा नसावा (सरकारी सह-योगदानासाठी)']
+    },
+    documents: {
+      en: ['Aadhaar Card', 'Savings bank account details', 'Mobile number', 'KYC documents'],
+      hi: ['आधार कार्ड', 'बचत बैंक खाता विवरण', 'मोबाइल नंबर', 'KYC दस्तावेज़'],
+      mr: ['आधार कार्ड', 'बचत बँक खाते तपशील', 'मोबाइल नंबर', 'KYC कागदपत्रे']
+    },
+    process: {
+      en: ['Visit your bank or post office', 'Fill APY registration form', 'Choose pension amount', 'Auto-debit set up from bank account'],
+      hi: ['अपने बैंक या डाकघर जाएं', 'APY पंजीकरण फॉर्म भरें', 'पेंशन राशि चुनें', 'बैंक खाते से ऑटो-डेबिट सेट करें'],
+      mr: ['तुमच्या बँकेत किंवा पोस्ट ऑफिसमध्ये जा', 'APY नोंदणी फॉर्म भरा', 'पेन्शन रक्कम निवडा', 'बँक खात्यातून ऑटो-डेबिट सेट करा']
+    },
+    criteria: { minAge: 18, maxAge: 40 }
+  },
+  {
+    id: 'svanidhi',
+    name: { en: 'PM SVANidhi Yojana', hi: 'पीएम स्वनिधि योजना', mr: 'पीएम स्वनिधी योजना' },
+    category: 'employment',
+    description: {
+      en: 'Collateral-free working capital loan up to ₹50,000 for street vendors to restart their business.',
+      hi: 'रेहड़ी-पटरी विक्रेताओं को व्यवसाय फिर से शुरू करने के लिए ₹50,000 तक का बिना गारंटी कर्ज।',
+      mr: 'रस्त्यावरील विक्रेत्यांना व्यवसाय पुन्हा सुरू करण्यासाठी ₹50,000 पर्यंत विनातारण कर्ज.'
+    },
+    benefits: {
+      en: ['Loan up to ₹50,000 in 3 tranches (₹10K, ₹20K, ₹50K)', '7% interest subsidy', 'Cashback on digital transactions', 'No collateral required'],
+      hi: ['3 चरणों में ₹50,000 तक का ऋण (₹10K, ₹20K, ₹50K)', '7% ब्याज सब्सिडी', 'डिजिटल लेनदेन पर कैशबैक', 'कोई गारंटी नहीं'],
+      mr: ['3 टप्प्यांत ₹50,000 पर्यंत कर्ज (₹10K, ₹20K, ₹50K)', '7% व्याज अनुदान', 'डिजिटल व्यवहारांवर कॅशबॅक', 'तारण नाही']
+    },
+    eligibility: {
+      en: ['Street vendor with vending certificate / ID card', 'Vending in urban / peri-urban area', 'Indian citizen aged 18+'],
+      hi: ['वेंडिंग प्रमाणपत्र/ID कार्ड वाला रेहड़ी विक्रेता', 'शहरी/उप-शहरी क्षेत्र में बिक्री', '18+ भारतीय नागरिक'],
+      mr: ['विक्रेता प्रमाणपत्र/ID कार्ड असलेला विक्रेता', 'शहरी/उप-शहरी भागात विक्री', '18+ भारतीय नागरिक']
+    },
+    documents: {
+      en: ['Aadhaar Card', 'Vendor ID / certificate of vending', 'Bank account details', 'Mobile number'],
+      hi: ['आधार कार्ड', 'विक्रेता ID / वेंडिंग प्रमाणपत्र', 'बैंक खाता विवरण', 'मोबाइल नंबर'],
+      mr: ['आधार कार्ड', 'विक्रेता ID / विक्री प्रमाणपत्र', 'बँक खाते तपशील', 'मोबाइल नंबर']
+    },
+    process: {
+      en: ['Apply at pmsvanidhi.mohua.gov.in or nearest bank/CSC', 'Submit vendor proof and Aadhaar', 'Bank verifies and disburses loan', 'Repay in 12 months to qualify for next tranche'],
+      hi: ['pmsvanidhi.mohua.gov.in या नज़दीकी बैंक/CSC पर आवेदन करें', 'विक्रेता प्रमाण और आधार जमा करें', 'बैंक सत्यापन करके ऋण जारी करता है', 'अगली किस्त के लिए 12 महीने में चुकाएं'],
+      mr: ['pmsvanidhi.mohua.gov.in किंवा जवळच्या बँकेत/CSC अर्ज करा', 'विक्रेता पुरावा व आधार द्या', 'बँक पडताळणी करून कर्ज देते', 'पुढील हप्त्यासाठी 12 महिन्यांत परतफेड करा']
+    },
+    criteria: { minAge: 18, occupations: ['vendor', 'self-employed'] }
+  },
+  {
+    id: 'stand-up-india',
+    name: { en: 'Stand-Up India Scheme', hi: 'स्टैंड-अप इंडिया योजना', mr: 'स्टँड-अप इंडिया योजना' },
+    category: 'employment',
+    description: {
+      en: 'Bank loans between ₹10 lakh and ₹1 crore for SC/ST and women entrepreneurs to set up greenfield enterprises.',
+      hi: 'अनुसूचित जाति/जनजाति और महिला उद्यमियों को नया उद्यम शुरू करने के लिए ₹10 लाख से ₹1 करोड़ तक का बैंक ऋण।',
+      mr: 'SC/ST व महिला उद्योजकांना नवीन उद्योग सुरू करण्यासाठी ₹10 लाख ते ₹1 कोटीपर्यंत बँक कर्ज.'
+    },
+    benefits: {
+      en: ['Loan ₹10 lakh – ₹1 crore', 'Composite loan (term + working capital)', 'Repayment up to 7 years', 'Handholding support'],
+      hi: ['₹10 लाख – ₹1 करोड़ का ऋण', 'कंपोजिट लोन (टर्म + वर्किंग कैपिटल)', '7 साल तक चुकौती', 'सहायक मार्गदर्शन'],
+      mr: ['₹10 लाख – ₹1 कोटी कर्ज', 'एकत्रित कर्ज (टर्म + खेळते भांडवल)', '7 वर्षांपर्यंत परतफेड', 'मार्गदर्शन सहाय्य']
+    },
+    eligibility: {
+      en: ['SC/ST or woman entrepreneur aged 18+', 'For greenfield project in manufacturing/services/trading', '51%+ shareholding by SC/ST/woman in non-individual enterprise'],
+      hi: ['18+ SC/ST या महिला उद्यमी', 'विनिर्माण/सेवा/व्यापार में ग्रीनफील्ड परियोजना के लिए', 'गैर-व्यक्तिगत उद्यम में SC/ST/महिला की 51%+ हिस्सेदारी'],
+      mr: ['18+ SC/ST किंवा महिला उद्योजक', 'उत्पादन/सेवा/व्यापारातील नवीन प्रकल्पासाठी', 'गैर-व्यक्तिगत उद्योगात SC/ST/महिलेची 51%+ भागीदारी']
+    },
+    documents: {
+      en: ['Aadhaar & PAN', 'Caste certificate (for SC/ST)', 'Project report / business plan', 'Bank statements', 'Address & identity proof'],
+      hi: ['आधार और PAN', 'जाति प्रमाण पत्र (SC/ST के लिए)', 'प्रोजेक्ट रिपोर्ट / बिज़नेस प्लान', 'बैंक स्टेटमेंट', 'पता और पहचान प्रमाण'],
+      mr: ['आधार व PAN', 'जात प्रमाणपत्र (SC/ST साठी)', 'प्रकल्प अहवाल / व्यवसाय योजना', 'बँक स्टेटमेंट', 'पत्ता व ओळख पुरावा']
+    },
+    process: {
+      en: ['Register at standupmitra.in', 'Submit business plan', 'Bank evaluates the proposal', 'Loan sanctioned and disbursed'],
+      hi: ['standupmitra.in पर पंजीकरण करें', 'बिज़नेस प्लान जमा करें', 'बैंक प्रस्ताव की जांच करता है', 'ऋण स्वीकृत और जारी किया जाता है'],
+      mr: ['standupmitra.in वर नोंदणी करा', 'व्यवसाय योजना सादर करा', 'बँक प्रस्तावाचे मूल्यांकन करते', 'कर्ज मंजूर व वितरित होते']
+    },
+    criteria: { minAge: 18, categories: ['SC', 'ST'], gender: ['female'] }
+  },
+  {
+    id: 'pmfby',
+    name: { en: 'PM Fasal Bima Yojana', hi: 'पीएम फसल बीमा योजना', mr: 'पीएम फसल बीमा योजना' },
+    category: 'agriculture',
+    description: {
+      en: 'Crop insurance scheme providing financial support to farmers in case of crop loss due to natural calamities, pests or diseases.',
+      hi: 'प्राकृतिक आपदाओं, कीटों या बीमारियों से फसल नुकसान पर किसानों को वित्तीय सहायता देने वाली फसल बीमा योजना।',
+      mr: 'नैसर्गिक आपत्ती, कीड किंवा रोगांमुळे पीक नुकसान झाल्यास शेतकऱ्यांना आर्थिक मदत देणारी पीक विमा योजना.'
+    },
+    benefits: {
+      en: ['Low premium: 2% (Kharif), 1.5% (Rabi), 5% (commercial/horticulture)', 'Full sum insured payout on crop loss', 'Covers pre-sowing to post-harvest losses', 'Direct bank account claim payment'],
+      hi: ['कम प्रीमियम: 2% (खरीफ), 1.5% (रबी), 5% (वाणिज्यिक/बागवानी)', 'फसल हानि पर पूरी बीमा राशि', 'बुवाई से पहले से कटाई के बाद तक कवरेज', 'सीधे बैंक खाते में दावा भुगतान'],
+      mr: ['कमी प्रीमियम: 2% (खरीप), 1.5% (रब्बी), 5% (व्यापारी/फलोत्पादन)', 'पीक नुकसान झाल्यास पूर्ण विमा रक्कम', 'पेरणीपूर्व ते कापणी नंतरचे नुकसान कवच', 'थेट बँक खात्यात दावा भरणा']
+    },
+    eligibility: {
+      en: ['All farmers (owner cultivators, tenants, sharecroppers)', 'Growing notified crops in notified areas', 'Loanee farmers auto-enrolled; non-loanee can apply voluntarily'],
+      hi: ['सभी किसान (मालिक, किरायेदार, बटाईदार)', 'अधिसूचित क्षेत्रों में अधिसूचित फसलें उगाने वाले', 'ऋणी किसान स्वतः नामांकित; गैर-ऋणी स्वेच्छा से आवेदन कर सकते हैं'],
+      mr: ['सर्व शेतकरी (मालक, भाडेकरू, वाटेकरी)', 'अधिसूचित क्षेत्रांत अधिसूचित पिके घेणारे', 'कर्जदार शेतकरी स्वयं नोंदणीकृत; गैर-कर्जदार स्वेच्छेने अर्ज करू शकतात']
+    },
+    documents: {
+      en: ['Aadhaar Card', 'Land ownership / tenancy records', 'Bank account details', 'Sowing certificate / declaration', 'Khasra / Khatauni'],
+      hi: ['आधार कार्ड', 'भूमि स्वामित्व/किरायेदारी रिकॉर्ड', 'बैंक खाता विवरण', 'बुवाई प्रमाण पत्र / घोषणा', 'खसरा / खतौनी'],
+      mr: ['आधार कार्ड', 'जमीन मालकी/भाडे नोंदी', 'बँक खाते तपशील', 'पेरणी प्रमाणपत्र / घोषणा', 'खसरा / खतौनी']
+    },
+    process: {
+      en: ['Apply at pmfby.gov.in or nearest bank/CSC/insurance agent', 'Submit crop & land details before cut-off date', 'Pay nominal premium', 'Insurance auto-applies; claim assessed after loss'],
+      hi: ['pmfby.gov.in या नज़दीकी बैंक/CSC/बीमा एजेंट पर आवेदन करें', 'अंतिम तिथि से पहले फसल और भूमि विवरण जमा करें', 'मामूली प्रीमियम का भुगतान करें', 'बीमा स्वतः लागू होता है; नुकसान के बाद दावे का आकलन'],
+      mr: ['pmfby.gov.in किंवा जवळच्या बँकेत/CSC/विमा एजंटकडे अर्ज करा', 'अंतिम तारखेपूर्वी पीक व जमीन तपशील द्या', 'अल्प प्रीमियम भरा', 'विमा स्वयं लागू; नुकसानानंतर दाव्याचे मूल्यांकन']
+    },
+    criteria: { occupations: ['farmer'], minAge: 18 }
+  },
+  {
+    id: 'e-shram',
+    name: { en: 'e-Shram Card', hi: 'ई-श्रम कार्ड', mr: 'ई-श्रम कार्ड' },
+    category: 'employment',
+    description: {
+      en: 'National database of unorganised workers providing a Universal Account Number (UAN) and access to social security benefits.',
+      hi: 'असंगठित श्रमिकों का राष्ट्रीय डेटाबेस, जो UAN और सामाजिक सुरक्षा लाभ प्रदान करता है।',
+      mr: 'असंघटित कामगारांचे राष्ट्रीय डेटाबेस, जे UAN व सामाजिक सुरक्षा लाभ देते.'
+    },
+    benefits: {
+      en: ['Free e-Shram card with UAN', 'Accident insurance ₹2 lakh under PMSBY', 'Access to govt welfare schemes', 'Portability across states'],
+      hi: ['UAN के साथ मुफ्त ई-श्रम कार्ड', 'PMSBY के तहत ₹2 लाख दुर्घटना बीमा', 'सरकारी कल्याण योजनाओं तक पहुंच', 'राज्यों में पोर्टेबिलिटी'],
+      mr: ['UAN सह मोफत ई-श्रम कार्ड', 'PMSBY अंतर्गत ₹2 लाख अपघात विमा', 'सरकारी कल्याण योजनांपर्यंत प्रवेश', 'राज्यांमध्ये पोर्टेबिलिटी']
+    },
+    eligibility: {
+      en: ['Unorganised worker aged 16–59', 'Not a member of EPFO/ESIC/NPS', 'Indian citizen with Aadhaar-linked mobile'],
+      hi: ['16–59 वर्ष का असंगठित श्रमिक', 'EPFO/ESIC/NPS का सदस्य न हो', 'आधार से जुड़े मोबाइल वाला भारतीय नागरिक'],
+      mr: ['16–59 वर्षांचा असंघटित कामगार', 'EPFO/ESIC/NPS सदस्य नसावा', 'आधारशी जोडलेला मोबाइल असलेला भारतीय नागरिक']
+    },
+    documents: {
+      en: ['Aadhaar Card', 'Aadhaar-linked mobile number', 'Bank account details'],
+      hi: ['आधार कार्ड', 'आधार से जुड़ा मोबाइल नंबर', 'बैंक खाता विवरण'],
+      mr: ['आधार कार्ड', 'आधारशी जोडलेला मोबाइल नंबर', 'बँक खाते तपशील']
+    },
+    process: {
+      en: ['Visit eshram.gov.in or nearest CSC', 'Self-register using Aadhaar OTP', 'Fill occupation and bank details', 'Download e-Shram card instantly'],
+      hi: ['eshram.gov.in या नज़दीकी CSC पर जाएं', 'आधार OTP से स्वयं पंजीकरण करें', 'व्यवसाय और बैंक विवरण भरें', 'तुरंत ई-श्रम कार्ड डाउनलोड करें'],
+      mr: ['eshram.gov.in किंवा जवळच्या CSC वर जा', 'आधार OTP वापरून स्वतः नोंदणी करा', 'व्यवसाय व बँक तपशील भरा', 'त्वरित ई-श्रम कार्ड डाउनलोड करा']
+    },
+    criteria: { minAge: 16, maxAge: 59 }
+  },
+  {
+    id: 'beti-bachao',
+    name: { en: 'Beti Bachao Beti Padhao', hi: 'बेटी बचाओ बेटी पढ़ाओ', mr: 'बेटी बचाओ बेटी पढाओ' },
+    category: 'women',
+    description: {
+      en: 'National initiative to address declining child sex ratio and promote education and empowerment of the girl child.',
+      hi: 'गिरते बाल लिंगानुपात को रोकने और बालिकाओं की शिक्षा एवं सशक्तिकरण को बढ़ावा देने वाली राष्ट्रीय पहल।',
+      mr: 'घटत्या बाल लिंग गुणोत्तराला तोंड देण्यासाठी व मुलींच्या शिक्षण व सक्षमीकरणाला चालना देणारी राष्ट्रीय मोहीम.'
+    },
+    benefits: {
+      en: ['Awareness & advocacy for girl child', 'Linkage with Sukanya Samriddhi Yojana', 'Support for girl education programmes', 'Action against sex-selective practices'],
+      hi: ['बालिकाओं के लिए जागरूकता और वकालत', 'सुकन्या समृद्धि योजना से जुड़ाव', 'बालिका शिक्षा कार्यक्रमों के लिए समर्थन', 'लिंग चयन प्रथाओं के विरुद्ध कार्रवाई'],
+      mr: ['मुलींसाठी जनजागृती व वकिली', 'सुकन्या समृद्धी योजनेशी जोड', 'मुलींच्या शिक्षण कार्यक्रमांना पाठिंबा', 'लिंग निवड प्रथांविरुद्ध कारवाई']
+    },
+    eligibility: {
+      en: ['All families with girl child', 'Special focus on districts with low child sex ratio', 'Girl child below 10 years (for SSY linkage)'],
+      hi: ['बालिका वाले सभी परिवार', 'कम बाल लिंगानुपात वाले जिलों पर विशेष ध्यान', '10 वर्ष से कम बालिका (SSY जुड़ाव के लिए)'],
+      mr: ['मुलगी असलेले सर्व कुटुंब', 'कमी बाल लिंग गुणोत्तर असलेल्या जिल्ह्यांवर विशेष लक्ष', '10 वर्षांखालील मुलगी (SSY जोडणीसाठी)']
+    },
+    documents: {
+      en: ['Birth certificate of girl child', 'Aadhaar (parent & child)', 'Address proof', 'Bank account (for linked schemes)'],
+      hi: ['बालिका का जन्म प्रमाण पत्र', 'आधार (माता-पिता व बच्चा)', 'पता प्रमाण', 'बैंक खाता (संबंधित योजनाओं के लिए)'],
+      mr: ['मुलीचा जन्म प्रमाणपत्र', 'आधार (पालक व मुलगी)', 'पत्ता पुरावा', 'बँक खाते (संबंधित योजनांसाठी)']
+    },
+    process: {
+      en: ['Contact local Anganwadi / Women & Child Development office', 'Register girl child for awareness programmes', 'Open SSY account for financial benefits', 'Avail linked education schemes'],
+      hi: ['स्थानीय आंगनवाड़ी / महिला एवं बाल विकास कार्यालय से संपर्क करें', 'जागरूकता कार्यक्रमों के लिए बालिका को पंजीकृत करें', 'वित्तीय लाभ हेतु SSY खाता खोलें', 'संबंधित शिक्षा योजनाओं का लाभ लें'],
+      mr: ['स्थानिक अंगणवाडी / महिला व बाल विकास कार्यालयाशी संपर्क करा', 'जागरूकता कार्यक्रमांसाठी मुलीची नोंदणी करा', 'आर्थिक लाभासाठी SSY खाते उघडा', 'संबंधित शिक्षण योजनांचा लाभ घ्या']
+    },
+    criteria: { gender: ['female'] }
+  },
+  {
+    id: 'skill-india',
+    name: { en: 'Skill India Mission (PMKVY)', hi: 'स्किल इंडिया मिशन (PMKVY)', mr: 'स्किल इंडिया मिशन (PMKVY)' },
+    category: 'education',
+    description: {
+      en: 'Free short-term skill training and certification for youth under Pradhan Mantri Kaushal Vikas Yojana to improve employability.',
+      hi: 'युवाओं की रोजगार क्षमता बढ़ाने के लिए प्रधानमंत्री कौशल विकास योजना के तहत मुफ्त अल्पकालिक कौशल प्रशिक्षण व प्रमाणन।',
+      mr: 'युवकांच्या रोजगारक्षमतेसाठी प्रधानमंत्री कौशल्य विकास योजनेअंतर्गत मोफत अल्पकालीन कौशल्य प्रशिक्षण व प्रमाणपत्र.'
+    },
+    benefits: {
+      en: ['Free industry-relevant training', 'Government-recognised certification', 'Placement assistance', 'Boarding & lodging support in some courses'],
+      hi: ['मुफ्त उद्योग-प्रासंगिक प्रशिक्षण', 'सरकार द्वारा मान्यता प्राप्त प्रमाणन', 'प्लेसमेंट सहायता', 'कुछ पाठ्यक्रमों में आवास/भोजन सहायता'],
+      mr: ['मोफत उद्योगाशी सुसंगत प्रशिक्षण', 'सरकारमान्य प्रमाणपत्र', 'नोकरी मिळवण्यासाठी मदत', 'काही अभ्यासक्रमांत निवास/भोजन सहाय्य']
+    },
+    eligibility: {
+      en: ['Indian citizen aged 15–45', 'School/college dropout or unemployed youth', 'Should have basic literacy in chosen sector'],
+      hi: ['15–45 वर्ष का भारतीय नागरिक', 'स्कूल/कॉलेज छोड़ चुका या बेरोज़गार युवा', 'चुने गए क्षेत्र में बुनियादी साक्षरता'],
+      mr: ['15–45 वर्षांचा भारतीय नागरिक', 'शाळा/कॉलेज सोडलेले किंवा बेरोजगार युवक', 'निवडलेल्या क्षेत्रात मूलभूत साक्षरता']
+    },
+    documents: {
+      en: ['Aadhaar Card', 'Educational certificates (if any)', 'Bank account details', 'Passport size photo'],
+      hi: ['आधार कार्ड', 'शैक्षणिक प्रमाण पत्र (यदि हों)', 'बैंक खाता विवरण', 'पासपोर्ट साइज फोटो'],
+      mr: ['आधार कार्ड', 'शैक्षणिक प्रमाणपत्रे (असल्यास)', 'बँक खाते तपशील', 'पासपोर्ट आकाराचा फोटो']
+    },
+    process: {
+      en: ['Visit pmkvyofficial.org or skillindiadigital.gov.in', 'Choose course and nearest training centre', 'Register with Aadhaar', 'Complete training and assessment to get certificate'],
+      hi: ['pmkvyofficial.org या skillindiadigital.gov.in पर जाएं', 'कोर्स और नज़दीकी प्रशिक्षण केंद्र चुनें', 'आधार से पंजीकरण करें', 'प्रशिक्षण व मूल्यांकन पूरा कर प्रमाणपत्र प्राप्त करें'],
+      mr: ['pmkvyofficial.org किंवा skillindiadigital.gov.in वर जा', 'अभ्यासक्रम व जवळचे प्रशिक्षण केंद्र निवडा', 'आधारसह नोंदणी करा', 'प्रशिक्षण व मूल्यांकन पूर्ण करून प्रमाणपत्र मिळवा']
+    },
+    criteria: { minAge: 15, maxAge: 45 }
+  },
+  {
+    id: 'naps',
+    name: { en: 'National Apprenticeship Promotion Scheme', hi: 'राष्ट्रीय शिक्षुता प्रोत्साहन योजना', mr: 'राष्ट्रीय शिकाऊ प्रोत्साहन योजना' },
+    category: 'employment',
+    description: {
+      en: 'Promotes apprenticeship training by sharing 25% of stipend (up to ₹1,500/month) paid to apprentices by employers.',
+      hi: 'नियोक्ताओं द्वारा प्रशिक्षुओं को दिए जाने वाले स्टाइपेंड का 25% (अधिकतम ₹1,500/माह) सरकार वहन करती है।',
+      mr: 'नियोक्ते शिकाऊंना देणाऱ्या स्टायपेंडच्या 25% (कमाल ₹1,500/महिना) सरकार भरते.'
+    },
+    benefits: {
+      en: ['Monthly stipend during apprenticeship', '25% stipend share by Govt up to ₹1,500/month', 'On-the-job training in real industry', 'NCVET recognised certificate after completion'],
+      hi: ['प्रशिक्षुता के दौरान मासिक स्टाइपेंड', '₹1,500/माह तक 25% स्टाइपेंड सरकार से', 'वास्तविक उद्योग में ऑन-द-जॉब प्रशिक्षण', 'पूर्णता पर NCVET मान्यता प्राप्त प्रमाणपत्र'],
+      mr: ['शिकाऊ काळात मासिक स्टायपेंड', '₹1,500/महिना पर्यंत 25% स्टायपेंड सरकारकडून', 'वास्तविक उद्योगात ऑन-द-जॉब प्रशिक्षण', 'पूर्ण झाल्यावर NCVET मान्यता प्राप्त प्रमाणपत्र']
+    },
+    eligibility: {
+      en: ['Indian citizen aged 14+ (18+ for hazardous industries)', 'Minimum educational qualification per trade', 'Not already engaged as apprentice elsewhere'],
+      hi: ['14+ भारतीय नागरिक (खतरनाक उद्योगों के लिए 18+)', 'ट्रेड के अनुसार न्यूनतम शैक्षणिक योग्यता', 'पहले से कहीं प्रशिक्षु न हो'],
+      mr: ['14+ भारतीय नागरिक (धोकादायक उद्योगांसाठी 18+)', 'ट्रेडनुसार किमान शैक्षणिक पात्रता', 'इतरत्र शिकाऊ म्हणून नसलेला']
+    },
+    documents: {
+      en: ['Aadhaar Card', 'Educational qualification certificates', 'Bank account details', 'Passport size photo'],
+      hi: ['आधार कार्ड', 'शैक्षणिक योग्यता प्रमाण पत्र', 'बैंक खाता विवरण', 'पासपोर्ट साइज फोटो'],
+      mr: ['आधार कार्ड', 'शैक्षणिक पात्रता प्रमाणपत्रे', 'बँक खाते तपशील', 'पासपोर्ट आकाराचा फोटो']
+    },
+    process: {
+      en: ['Register at apprenticeshipindia.gov.in', 'Search and apply for apprenticeship opportunities', 'Get selected by employer', 'Sign apprenticeship contract and start training'],
+      hi: ['apprenticeshipindia.gov.in पर पंजीकरण करें', 'प्रशिक्षुता अवसर खोजें और आवेदन करें', 'नियोक्ता द्वारा चयन हो', 'अनुबंध पर हस्ताक्षर कर प्रशिक्षण शुरू करें'],
+      mr: ['apprenticeshipindia.gov.in वर नोंदणी करा', 'शिकाऊ संधी शोधा व अर्ज करा', 'नियोक्त्याकडून निवड व्हा', 'करारावर सही करून प्रशिक्षण सुरू करा']
+    },
+    criteria: { minAge: 14, maxAge: 35 }
+  },
+  {
+    id: 'jan-dhan',
+    name: { en: 'PM Jan Dhan Yojana', hi: 'पीएम जन धन योजना', mr: 'पीएम जन धन योजना' },
+    category: 'employment',
+    description: {
+      en: 'Zero-balance bank account for every household with RuPay debit card, accident insurance and overdraft facility.',
+      hi: 'हर परिवार के लिए शून्य बैलेंस बैंक खाता, RuPay डेबिट कार्ड, दुर्घटना बीमा व ओवरड्राफ्ट सुविधा के साथ।',
+      mr: 'प्रत्येक कुटुंबासाठी शून्य शिल्लक बँक खाते, RuPay डेबिट कार्ड, अपघात विमा व ओव्हरड्राफ्ट सुविधेसह.'
+    },
+    benefits: {
+      en: ['Zero balance savings account', 'Free RuPay debit card', '₹2 lakh accident insurance cover', 'Overdraft up to ₹10,000', 'Direct benefit transfer of govt subsidies'],
+      hi: ['शून्य बैलेंस बचत खाता', 'मुफ्त RuPay डेबिट कार्ड', '₹2 लाख दुर्घटना बीमा कवर', '₹10,000 तक ओवरड्राफ्ट', 'सरकारी सब्सिडी का सीधा हस्तांतरण'],
+      mr: ['शून्य शिल्लक बचत खाते', 'मोफत RuPay डेबिट कार्ड', '₹2 लाख अपघात विमा कवच', '₹10,000 पर्यंत ओव्हरड्राफ्ट', 'सरकारी अनुदानांचे थेट हस्तांतरण']
+    },
+    eligibility: {
+      en: ['Any Indian citizen aged 10+', 'No existing bank account preferred', 'Minor accounts via guardian'],
+      hi: ['10+ कोई भी भारतीय नागरिक', 'पहले से बैंक खाता न होना बेहतर', 'नाबालिग के लिए अभिभावक के माध्यम से'],
+      mr: ['10+ कोणताही भारतीय नागरिक', 'आधीच बँक खाते नसणे प्राधान्य', 'अल्पवयीनांसाठी पालकांमार्फत']
+    },
+    documents: {
+      en: ['Aadhaar Card', 'PAN (if available)', 'Address proof', 'Passport size photo'],
+      hi: ['आधार कार्ड', 'PAN (यदि उपलब्ध हो)', 'पता प्रमाण', 'पासपोर्ट साइज फोटो'],
+      mr: ['आधार कार्ड', 'PAN (असल्यास)', 'पत्ता पुरावा', 'पासपोर्ट आकाराचा फोटो']
+    },
+    process: {
+      en: ['Visit any bank branch or Bank Mitra', 'Fill PMJDY account opening form', 'Submit Aadhaar / KYC documents', 'Receive passbook and RuPay card'],
+      hi: ['किसी भी बैंक शाखा या बैंक मित्र के पास जाएं', 'PMJDY खाता खोलने का फॉर्म भरें', 'आधार / KYC दस्तावेज़ जमा करें', 'पासबुक और RuPay कार्ड प्राप्त करें'],
+      mr: ['कोणत्याही बँक शाखेत किंवा बँक मित्राकडे जा', 'PMJDY खाते उघडण्याचा फॉर्म भरा', 'आधार / KYC कागदपत्रे द्या', 'पासबुक व RuPay कार्ड मिळवा']
+    },
+    criteria: { minAge: 10 }
+  },
 ];
 
 export const categories = [
