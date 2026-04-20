@@ -43,14 +43,14 @@ export function HomePage({ onNavigate, onSelectScheme, onSearch }: HomePageProps
       <div className="bg-primary rounded-md p-5 text-primary-foreground">
         <h1 className="text-lg font-bold mb-1">{t('app.title')}</h1>
         <p className="text-sm opacity-90 mb-4">{t('app.tagline')}</p>
-        <form onSubmit={handleSearch} className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
+        <form onSubmit={handleSearch} className="relative group">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors group-focus-within:text-primary" size={18} />
           <input
             type="text"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             placeholder={t('home.search')}
-            className="w-full pl-10 pr-4 py-2.5 rounded-sm bg-card text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            className="w-full pl-10 pr-4 py-2.5 rounded-sm bg-card text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:shadow-[0_0_0_4px_hsl(var(--primary)/0.15)] focus:placeholder:opacity-0 placeholder:transition-opacity placeholder:duration-200 transition-all duration-200"
           />
         </form>
       </div>

@@ -147,7 +147,20 @@ export function EligibilityPage({ onSelectScheme, onBack }: EligibilityPageProps
           </select>
         </div>
 
-        <button type="submit" className="btn-civic w-full">{t('eligibility.check')}</button>
+        <button
+          type="submit"
+          disabled={isChecking}
+          className="btn-civic w-full transition-transform active:scale-[0.98] disabled:opacity-80"
+        >
+          {isChecking ? (
+            <>
+              <span className="inline-block w-4 h-4 border-2 border-primary-foreground/40 border-t-primary-foreground rounded-full animate-spin" />
+              <span>{t('eligibility.check')}…</span>
+            </>
+          ) : (
+            t('eligibility.check')
+          )}
+        </button>
       </form>
     </div>
   );
