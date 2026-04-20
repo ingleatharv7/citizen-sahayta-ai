@@ -62,6 +62,7 @@ const translations: Record<string, LocalizedText<string>> = {
   'map.title': { en: 'Nearby Services', hi: 'नज़दीकी सेवाएं', mr: 'जवळच्या सेवा' },
   'map.govOffices': { en: 'Government Offices', hi: 'सरकारी कार्यालय', mr: 'सरकारी कार्यालये' },
   'map.banks': { en: 'Banks', hi: 'बैंक', mr: 'बँका' },
+  'map.csc': { en: 'CSC Centers', hi: 'सीएससी केंद्र', mr: 'सीएससी केंद्रे' },
   'map.cyberCafe': { en: 'Cyber Cafes', hi: 'साइबर कैफे', mr: 'सायबर कॅफे' },
   'map.comingSoon': { en: 'Map integration coming soon! For now, search on Google Maps.', hi: 'नक्शा जल्द आ रहा है! अभी Google Maps पर खोजें।', mr: 'नकाशा लवकरच येत आहे! सध्या Google Maps वर शोधा.' },
   'select': { en: 'Select', hi: 'चुनें', mr: 'निवडा' },
