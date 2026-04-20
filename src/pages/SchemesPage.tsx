@@ -57,14 +57,15 @@ export function SchemesPage({ onSelectScheme }: SchemesPageProps) {
       </div>
 
       {/* Scheme list */}
-      <div className="space-y-2">
-        {filtered.map(scheme => {
+      <div className="space-y-2" key={activeCategory ?? 'all'}>
+        {filtered.map((scheme, i) => {
           const Icon = categoryIcons[scheme.category];
           return (
             <button
               key={scheme.id}
               onClick={() => onSelectScheme(scheme)}
-              className="card-civic w-full p-4 flex items-start gap-3 text-left"
+              className="card-civic w-full p-4 flex items-start gap-3 text-left animate-fade-in-up"
+              style={{ animationDelay: `${Math.min(i, 8) * 50}ms` }}
             >
               <div className="w-10 h-10 rounded-sm bg-secondary flex items-center justify-center flex-shrink-0">
                 <Icon size={20} className="text-primary" />
