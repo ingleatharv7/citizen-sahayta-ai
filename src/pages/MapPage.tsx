@@ -2,7 +2,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { MapPin, Building2, Landmark, Monitor, Navigation } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
-const GOOGLE_MAPS_API_KEY = 'AIzaSyBm9XWhZ7Mxd9Fqr96DkyNYsoF5M06BVKI';
+const GOOGLE_MAPS_API_KEY = 'AIzaSyCMR961vwN6oeqV7wDzeDU0jnH9YI_r6Ns';
 
 type ServiceType = 'government+offices' | 'banks' | 'cyber+cafe';
 
