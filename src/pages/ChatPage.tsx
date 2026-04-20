@@ -156,7 +156,7 @@ export function ChatPage() {
           </div>
         ))}
         {isLoading && (
-          <div className="flex gap-2">
+          <div className="flex gap-2 animate-fade-in">
             <div className="w-7 h-7 rounded-sm bg-primary flex items-center justify-center">
               <Bot size={14} className="text-primary-foreground" />
             </div>
@@ -169,6 +169,20 @@ export function ChatPage() {
             </div>
           </div>
         )}
+        {isListening && (
+          <div className="flex items-center gap-2 px-1 animate-fade-in" aria-live="polite">
+            <div className="flex items-end gap-0.5 h-4">
+              {[0, 1, 2, 3, 4].map(i => (
+                <span
+                  key={i}
+                  className="w-0.5 h-full bg-destructive rounded-full animate-wave-bounce"
+                  style={{ animationDelay: `${i * 110}ms` }}
+                />
+              ))}
+            </div>
+            <span className="text-[11px] text-muted-foreground">{t('voice.listen')}…</span>
+          </div>
+        )}
         <div ref={bottomRef} />
       </div>
 
@@ -178,24 +192,30 @@ export function ChatPage() {
           value={input}
           onChange={e => setInput(e.target.value)}
           placeholder={isListening ? `${t('voice.listen')}...` : t('chat.placeholder')}
-          className="flex-1 px-3 py-2.5 rounded-sm border border-border bg-card text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+          className="flex-1 px-3 py-2.5 rounded-sm border border-border bg-card text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary transition-all duration-200"
         />
         {support.stt && (
           <button
             type="button"
             onClick={toggleMic}
-            className={`px-3 rounded-sm border transition-colors flex items-center justify-center ${
+            className={`relative px-3 rounded-sm border transition-all duration-200 flex items-center justify-center ${
               isListening
-                ? 'bg-destructive text-destructive-foreground border-destructive animate-pulse'
-                : 'bg-card text-foreground border-border hover:bg-secondary'
+                ? 'bg-destructive text-destructive-foreground border-destructive animate-mic-glow'
+                : 'bg-card text-foreground border-border hover:bg-secondary hover:scale-105'
             }`}
             aria-label={isListening ? t('voice.stop') : t('voice.listen')}
             title={isListening ? t('voice.stop') : t('voice.listen')}
           >
-            {isListening ? <MicOff size={16} /> : <Mic size={16} />}
+            {isListening && (
+              <>
+                <span className="absolute inset-0 rounded-sm bg-destructive/40 animate-mic-ripple pointer-events-none" />
+                <span className="absolute inset-0 rounded-sm bg-destructive/30 animate-mic-ripple pointer-events-none" style={{ animationDelay: '0.5s' }} />
+              </>
+            )}
+            {isListening ? <MicOff size={16} className="relative" /> : <Mic size={16} />}
           </button>
         )}
-        <button type="submit" disabled={isLoading || !input.trim()} className="btn-civic !px-3">
+        <button type="submit" disabled={isLoading || !input.trim()} className="btn-civic !px-3 transition-transform active:scale-95">
           <Send size={16} />
         </button>
       </form>

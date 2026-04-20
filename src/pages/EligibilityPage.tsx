@@ -15,37 +15,46 @@ export function EligibilityPage({ onSelectScheme, onBack }: EligibilityPageProps
   const { t, lang } = useLanguage();
   const [form, setForm] = useState({ age: '', income: '', state: '', category: '', occupation: '', gender: '' });
   const [results, setResults] = useState<ReturnType<typeof checkEligibility> | null>(null);
+  const [isChecking, setIsChecking] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const r = checkEligibility({
-      age: parseInt(form.age) || 0,
-      income: parseInt(form.income) || 0,
-      gender: form.gender,
-      category: form.category,
-      occupation: form.occupation,
-    });
-    setResults(r);
+    setIsChecking(true);
+    setTimeout(() => {
+      const r = checkEligibility({
+        age: parseInt(form.age) || 0,
+        income: parseInt(form.income) || 0,
+        gender: form.gender,
+        category: form.category,
+        occupation: form.occupation,
+      });
+      setResults(r);
+      setIsChecking(false);
+    }, 450);
   };
 
-  const selectClass = "w-full p-2.5 rounded-sm border border-border bg-card text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring";
+  const selectClass = "w-full p-2.5 rounded-sm border border-border bg-card text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary transition-all duration-200";
   const inputClass = selectClass;
 
   if (results) {
+    const noneEligible = results.eligible.length === 0;
     return (
       <div className="px-4 pb-6 space-y-4">
         <button onClick={() => setResults(null)} className="flex items-center gap-1 text-sm text-primary font-medium">
           <ArrowLeft size={16} /> {t('scheme.back')}
         </button>
-        <h1 className="text-lg font-bold text-foreground">{t('eligibility.results')}</h1>
+        <h1 className={`text-lg font-bold text-foreground animate-fade-in-up ${noneEligible ? 'animate-subtle-shake' : ''}`}>
+          {t('eligibility.results')}
+        </h1>
 
         {results.eligible.length > 0 && (
           <div className="space-y-2">
-            {results.eligible.map(scheme => (
+            {results.eligible.map((scheme, i) => (
               <button
                 key={scheme.id}
                 onClick={() => onSelectScheme(scheme)}
-                className="card-civic w-full p-4 flex items-center gap-3 text-left"
+                className="card-civic w-full p-4 flex items-center gap-3 text-left animate-scale-in border-l-2 border-l-success"
+                style={{ animationDelay: `${i * 70}ms` }}
               >
                 <CheckCircle2 size={20} className="text-success flex-shrink-0" />
                 <div>
@@ -59,16 +68,20 @@ export function EligibilityPage({ onSelectScheme, onBack }: EligibilityPageProps
 
         {results.notEligible.length > 0 && (
           <div className="space-y-2">
-            <h2 className="text-sm font-semibold text-muted-foreground">{t('eligibility.notEligible')}</h2>
-            {results.notEligible.map(({ scheme, reasons }) => (
-              <div key={scheme.id} className="card-civic p-4">
+            <h2 className="text-sm font-semibold text-muted-foreground animate-fade-in">{t('eligibility.notEligible')}</h2>
+            {results.notEligible.map(({ scheme, reasons }, i) => (
+              <div
+                key={scheme.id}
+                className="card-civic p-4 animate-fade-in-up border-l-2 border-l-destructive"
+                style={{ animationDelay: `${(results.eligible.length + i) * 70}ms` }}
+              >
                 <div className="flex items-center gap-2 mb-2">
                   <XCircle size={18} className="text-destructive" />
                   <p className="text-sm font-medium text-foreground">{scheme.name[lang]}</p>
                 </div>
                 <ul className="space-y-1 ml-7">
-                  {reasons.map((r, i) => (
-                    <li key={i} className="text-xs text-muted-foreground">• {r[lang]}</li>
+                  {reasons.map((r, idx) => (
+                    <li key={idx} className="text-xs text-muted-foreground">• {r[lang]}</li>
                   ))}
                 </ul>
               </div>
